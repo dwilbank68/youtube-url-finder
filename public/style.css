@@ -13,3 +13,14 @@ textarea {
 #text, #urls {
     border:1px solid darkgray;
 }
+
+button {
+    margin-top: -3px;
+    background-color: black;
+    font-size: .75em;
+    border: 1px solid yellow;
+}
+
+button:hover {
+    color: white !important;
+}

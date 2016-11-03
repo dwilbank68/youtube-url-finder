@@ -18,18 +18,18 @@
                 <br/>
                 <h4 class="text-center">Instructions</h4>
                 <p>
-                    Paste a list of search terms into the left-hand column.<br/>
-                    Make sure each term is on its own line (not separated by a comma, a colon, or any other character).<br/>
-                    The top result for each search term will appear in the column on the right
+                    • Paste a list of search terms into the left-hand column.<br/>
+                    • Make sure each term is on its own line (not separated by a comma, a colon, or any other character).<br/>
+                    • The top result for each search term will appear in the column on the right
                 </p>
                 <br/>
                 <h4 class="text-center">Technologies Used</h4>
                 <p>
-                    Express 4<br/>
-                    Angular 1<br/>
-                    youtube-api-search (npm package)<br/>
-                    jQuery textarea auto-resizing<br/>
-                    Note: the inputbox (textarea) is debounced at 1500ms to avoid unnecessary api calls
+                    • Express 4<br/>
+                    • Angular 1<br/>
+                    • youtube-api-search (npm package)<br/>
+                    • jQuery textarea auto-resizing<br/>
+                    • Note: the inputbox (textarea) is debounced at 1500ms to avoid unnecessary api calls
                 </p>
                 <br/>
             </div>
@@ -52,8 +52,12 @@
 
             </div>
             <div class="col-xs-6" id="urls">
-                <h3>URLS</h3>
-
+                <h3>
+                    URLS
+                    <button type='button' class="btn btn-xs btn-outline-primary" data-clipboard-target=".list-group">
+                        Copy list to clipboard
+                    </button>
+                </h3>
                 <ul class="list-group">
                     <li ng-repeat="item in urlsArr" class="list-group-item">
                         <a ng-href="{{item.url}}" target="_blank">{{item.url}}</a>
@@ -65,5 +69,7 @@
 </div>
 <script src="app.js"></script>
 <script src="jQuery-app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+<script src="clipboard.js"></script>
 </body>
 </html>
