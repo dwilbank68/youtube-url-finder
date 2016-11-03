@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+    color: yellow;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    color: black;
+}
+
+#text, #urls {
+    border:1px solid darkgray;
+}

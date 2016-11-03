@@ -5,34 +5,33 @@ angular
 
 
 function YTControllerFn($scope, $http){
-    $scope.titles = 'paste list here';
 
     $scope.processTitles  = function(data){
-        console.log('happenin', data);
-        // var vm = this;
-        // $http
-        //     .post( '/titles', data)
-        //     .then(function (res) {
-        //         console.log('response');
-        //         console.log(res);
-        //     })
-        //     .catch(function (err) {
-        //         console.log('error',err);
-        //     })
-        // vm.titlesArr = data.split('\n');
-        // vm.titlesArr = vm.titlesArr.map( title => title.replace('.mp4', '') );
-        // $scope.count = vm.titlesArr.length;
-        // angular
-        //     .forEach(vm.titlesArr, (title) => {
-        //         var searchObj = {
-        //             key: '',
-        //             term: title
-        //         }
-        //         YTSearch(searchObj, function(data){
-        //             console.log(data.video.id.videoId);
-        //         })
-        //     });
+        var vm = this;
+        vm.titlesArr = data.split('\n');
+        vm.titlesArr = vm.titlesArr.map( title => title.replace('.mp4', '') );
+        vm.titlesArr = vm.titlesArr.map( title => title.replace('ën', "‘n") );
+        vm.titlesArr = vm.titlesArr.map( title => title.replace('ís', "’s") );
+        vm.titlesArr = vm.titlesArr.map( title => title.replace('ñ', ":") );
+        vm.titlesArr = vm.titlesArr.map( title => title.replace('_', ":") );
+        vm.count = vm.titlesArr.length;
+        vm.dataObj = {};
+
+        angular
+            .forEach(vm.titlesArr, function (title, idx) {
+                vm.dataObj[idx] = title;
+            })
+
+        $http
+            .post( '/titles', vm.dataObj)
+            .then(function (res) {
+                vm.urlsArr = res.data;
+            })
+            .catch(function (err) {
+                console.log('error',err);
+            })
+
 
     }
 }
-//
+

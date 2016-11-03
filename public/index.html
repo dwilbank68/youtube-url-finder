@@ -7,30 +7,56 @@
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div ng-app="app">
     <div ng-controller="YTController" class="container">
         <div class="row">
-            <div class="col-xs-6">
-                <h2>
+            <h2 class="text-center">YouTube Batch URL Finder</h2>
+            <div class="col-xs-8 col-xs-offset-2">
+                <br/>
+                <h4 class="text-center">Instructions</h4>
+                <p>
+                    Paste a list of search terms into the left-hand column.<br/>
+                    Make sure each term is on its own line (not separated by a comma, a colon, or any other character).<br/>
+                    The top result for each search term will appear in the column on the right
+                </p>
+                <br/>
+                <h4 class="text-center">Technologies Used</h4>
+                <p>
+                    Express 4<br/>
+                    Angular 1<br/>
+                    youtube-api-search (npm package)<br/>
+                    jQuery textarea auto-resizing<br/>
+                    Note: the inputbox (textarea) is debounced at 1500ms to avoid unnecessary api calls
+                </p>
+                <br/>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-6" id="text">
+                <h3>
                     Paste titles here
                     <span ng-if="count">({{count}})</span>
-                </h2>
+                </h3>
                 <p></p>
                 <form>
-                    <textarea   ng-model="titles"
-                                ng-change="processTitles(titles)" >
+                    <textarea   ng-model="titles" ng-model-options="{debounce:1500}"
+                                ng-change="processTitles(titles)"
+                                data-autoresize rows="2"
+                                placeholder="enter or paste search terms here">
                     </textarea>
                 </form>
 
             </div>
-            <div class="col-xs-6">
-                <h2>URLS</h2>
+            <div class="col-xs-6" id="urls">
+                <h3>URLS</h3>
 
                 <ul class="list-group">
-                    <li ng-repeat="item in displayArray" class="list-group-item">
-
+                    <li ng-repeat="item in urlsArr" class="list-group-item">
+                        <a ng-href="{{item.url}}">{{item.url}}</a>
                     </li>
                 </ul>
             </div>
@@ -38,5 +64,6 @@
     </div>
 </div>
 <script src="app.js"></script>
+<script src="jQuery-app.js"></script>
 </body>
 </html>
